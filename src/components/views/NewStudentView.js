@@ -90,6 +90,7 @@ const NewStudentView = (props) => {
           </form>
           </div>
       </div>
+      
     </div>    
   )
 }
