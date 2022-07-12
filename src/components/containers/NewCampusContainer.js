@@ -86,7 +86,7 @@ class NewCampusContainer extends Component {
 // The "mapDispatch" calls the specific Thunk to dispatch its action. The "dispatch" is a function of Redux Store.
 const mapDispatch = (dispatch) => {
     return({
-        addCampus: (campus) => dispatch(addCampusThunk(campus)),
+        addCampus: (campus) => dispatch(addCampusThunk(campus))
     })
 }
 
