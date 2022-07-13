@@ -6,12 +6,12 @@ It constructs a React component to display a single campus and its students (if 
 ================================================== */
 import { Link } from "react-router-dom";
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles( () => ({
-  image:{  
-    width: '100px',
-    height: '100px'
+const useStyles = makeStyles(() => ({
+  image: {
+    width: "100px",
+    height: "100px",
   },
 }));
 
@@ -20,34 +20,36 @@ const CampusView = (props) => {
   const classes = useStyles();
   const { campus, deleteCampus, deleteStudent } = props;
   if (!campus.students.length) {
-    <div>
-      <div >
-        <h1>{campus.name}</h1>
+    return (
+      <div>
+        <div>
+          <h1>{campus.name}</h1>
+        </div>
+        <img src={campus.imageUrl} alt="Campus" className={classes.image} />
+        <h3>{campus.description}</h3>
+        <p>{campus.address}</p>
+        <p>There are no students at this campus.</p>
+        <br />
+        <Link to={`/editcampus/` + campus.id}>
+          <button>Edit Campus</button>
+        </Link>
+        <br />
+        <Link to={`/newstudent/`}>
+          <button>Add Student</button>
+        </Link>
+        <br />
+        <Link to={`/campuses`}>
+          <button onClick={() => deleteCampus(campus.id)}>Delete Campus</button>
+        </Link>
+        <br />
       </div>
-      <img src={campus.imageUrl} alt="Campus" className={classes.image} />
-      <h3>{campus.description}</h3>
-      <p>{campus.address}</p>
-      <p>There are no students at this campus.</p>
-      <br />
-      <Link to={`/editcampus/` + campus.id}>
-        <button>Edit Campus</button>
-      </Link>
-      <br />
-      <Link to={`/newstudent/`}>
-        <button>Add Student</button>
-      </Link>
-      <br />
-      <Link to={`/campuses`}>
-        <button onClick={() => deleteCampus(campus.id)}>Delete Campus</button>
-      </Link>
-      <br />
-    </div>;
+    );
   }
   // Render a single Campus view with list of its students
   return (
     <div>
       <h1>{campus.name}</h1>
-      <img src={campus.imageUrl} alt="Campus" className={classes.image}/>
+      <img src={campus.imageUrl} alt="Campus" className={classes.image} />
       <p>{campus.address}</p>
       <p>{campus.description}</p>
       {campus.students.map((student) => {
@@ -57,10 +59,12 @@ const CampusView = (props) => {
             <Link to={`/student/${student.id}`}>
               <h2>{name}</h2>
             </Link>
-            <br/>
+            <br />
             <Link to={`/students`}>
-          <button onClick={() => deleteStudent(student.id)}>Delete Student</button>
-          </Link>
+              <button onClick={() => deleteStudent(student.id)}>
+                Delete Student
+              </button>
+            </Link>
           </div>
         );
       })}
