@@ -79,3 +79,10 @@ export const fetchStudent = (student) => {
     payload: student,
   };
 };
+
+export const enrollStudent = (student) => {
+  return {
+    type: at.ENROLL_STUDENT,
+    payload: student,
+  };
+};

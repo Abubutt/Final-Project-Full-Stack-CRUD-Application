@@ -12,17 +12,18 @@ import { Redirect } from "react-router-dom";
 
 import NewStudentView from "../views/NewStudentView";
 import { addStudentThunk, editStudentThunk } from "../../store/thunks";
+import * as yup from 'yup';
 
 class NewStudentContainer extends Component {
   // Initialize state
   constructor(props) {
     super(props);
     this.state = {
-      firstname: "",
-      lastname: "",
-      email: "",
-      imageUrl: "",
-      campusId: null,
+      firstname: yup.string().required(),
+      lastname: yup.string().required(),
+      email:yup.string().email(),
+      imageUrl: yup.string(),
+      campusId: yup.number().required().positive().integer(),
       redirect: false,
       redirectId: null,
     };
